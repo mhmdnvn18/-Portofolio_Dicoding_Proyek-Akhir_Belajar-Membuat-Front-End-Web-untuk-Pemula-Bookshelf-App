@@ -99,6 +99,7 @@ function createActionDelete(idBook) {
     return actionDelete;
 }
 
+
 function createActionRead(idBook) {
     const action = document.createElement("button");
     action.classList.add("btn", "btn-sm", "btn-outline-primary");
@@ -121,7 +122,7 @@ function createActionRead(idBook) {
 
         books.push(bookObject);
         updateJson();
-    })
+    });
 
     return action;
 }
