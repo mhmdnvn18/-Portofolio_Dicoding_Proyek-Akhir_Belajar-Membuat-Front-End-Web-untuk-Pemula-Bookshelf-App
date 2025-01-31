@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     const formInput = document.getElementById("inputBook");
     const formSearch = document.getElementById("searchBook");
 
@@ -26,4 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("onjsonfetched", function () {
     renderFromBooks();
-});
+});te

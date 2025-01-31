@@ -5,7 +5,7 @@ function addBook() {
     const idBook = +new Date();
     const inputBookTitle = document.getElementById("inputBookTitle").value;
     const inputBookAuthor = document.getElementById("inputBookAuthor").value;
-    const inputBookYear = document.getElementById("inputBookYear").value;
+    const inputBookYear = Number(document.getElementById("inputBookYear").value); // Ubah ke number
     const inputBookIsComplete = document.getElementById("inputBookIsComplete").checked;
 
     const book = createBook(idBook, inputBookTitle, inputBookAuthor, inputBookYear, inputBookIsComplete);
@@ -22,29 +22,28 @@ function addBook() {
     updateJson();
 }
 
-
 function createBook(idBook, inputBookTitle, inputBookAuthor, inputBookYear, inputBookIsComplete) {
     const book = document.createElement("article");
     book.setAttribute("id", idBook);
-    book.setAttribute("data-bookid", idBook);
-    book.setAttribute("data-testid", "bookItem");
+    book.setAttribute("data-bookid", idBook); 
+    book.setAttribute("data-testid", "bookItem"); 
     book.classList.add("card", "my-3");
 
     const bookTitle = document.createElement("h5");
     bookTitle.classList.add("text-truncate");
     bookTitle.style.maxWidth = "200px";
     bookTitle.innerText = inputBookTitle;
-    bookTitle.setAttribute("data-testid", "bookItemTitle");
+    bookTitle.setAttribute("data-testid", "bookItemTitle"); 
 
     const bookAuthor = document.createElement("span");
     bookAuthor.classList.add("text-truncate", "d-inline-block");
     bookAuthor.style.maxWidth = "200px";
     bookAuthor.innerText = inputBookAuthor;
-    bookAuthor.setAttribute("data-testid", "bookItemAuthor");
+    bookAuthor.setAttribute("data-testid", "bookItemAuthor"); 
 
     const bookYear = document.createElement("span");
     bookYear.innerText = inputBookYear;
-    bookYear.setAttribute("data-testid", "bookItemYear");
+    bookYear.setAttribute("data-testid", "bookItemYear"); 
 
     const br = document.createElement("br");
 
@@ -93,13 +92,10 @@ function createActionDelete(idBook) {
 
         if (confirmation) {
             const cardParent = document.getElementById(idBook);
-            cardParent.addEventListener("eventDelete", function (event) {
-                event.target.remove();
-            });
-            cardParent.dispatchEvent(new Event("eventDelete"));
+            cardParent.remove(); // Langsung hapus elemen dari DOM
 
             deleteBookFromJson(idBook);
-            updateJson();
+            updateJson(); // Update localStorage
         }
     });
 
@@ -110,7 +106,7 @@ function createActionRead(idBook) {
     const action = document.createElement("button");
     action.classList.add("btn", "btn-sm", "btn-outline-primary");
     action.innerHTML = '<i class="bi bi-check"></i>';
-    action.setAttribute("data-testid", "bookItemIsCompleteButton");
+    action.setAttribute("data-testid", "bookItemIsCompleteButton"); // Added data-testid
 
     action.addEventListener("click", function () {
         const cardParent = document.getElementById(idBook);
@@ -138,7 +134,7 @@ function createActionUndo(idBook) {
     const action = document.createElement("button");
     action.classList.add("btn", "btn-sm", "btn-outline-secondary");
     action.innerHTML = '<i class="bi bi-arrow-counterclockwise"></i>';
-    action.setAttribute("data-testid", "bookItemIsCompleteButton");
+    action.setAttribute("data-testid", "bookItemIsCompleteButton"); // Added data-testid
 
     action.addEventListener("click", function () {
         const cardParent = document.getElementById(idBook);

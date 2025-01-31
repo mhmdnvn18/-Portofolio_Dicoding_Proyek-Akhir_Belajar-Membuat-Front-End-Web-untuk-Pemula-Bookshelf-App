@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Apps</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        header {
+            background-color: #4caf50;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px; /* Adjust this value based on the header height */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e7e7e7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #008cba;
+            border: none;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+
+        .btn-primary:hover {
+            background-color: #005f5f;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .book-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+
+        .book-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .book-item:last-child {
+            border-bottom: none;
+        }
+
+        .book-item h5 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .book-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .book-item button {
+            margin-right: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            border-radius: 5px 0 0 5px;
+        }
+
+        .input-group button {
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><i class="bi bi-book"></i> Bookshelf Apps</h1>
+    </header>
+    <div class="container">
+        <div class="container">
+            <main>
+                <div class="row gap-4">
+                    <!-- Form Tambah Buku -->
+                    <div class="col-12 col-md-5 col-lg-4">
+                        <section>
+                            <h4><i class="bi bi-plus-circle"></i> Tambahkan Buku Baru</h4>
+                            <form id="inputBook" data-testid="bookForm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="inputBookTitle">Judul</label>
+                                    <input 
+                                        class="form-control" 
+                                        id="inputBookTitle" 
+                                        type="text" 
+                                        required
+                                        data-testid="bookFormTitleInput"
+                                    >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="inputBookAuthor">Penulis</label>
+                                    <input 
+                                        class="form-control" 
+                                        id="inputBookAuthor" 
+                                        type="text" 
+                                        required
+                                        data-testid="bookFormAuthorInput"
+                                    >
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="inputBookYear">Tahun</label>
+                                    <input 
+                                        class="form-control" 
+                                        id="inputBookYear" 
+                                        type="number" 
+                                        min="0" 
+                                        required
+                                        data-testid="bookFormYearInput"
+                                    >
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input 
+                                        class="form-check-input" 
+                                        id="inputBookIsComplete" 
+                                        type="checkbox"
+                                        data-testid="bookFormIsCompleteCheckbox"
+                                    >
+                                    <label class="form-check-label" for="inputBookIsComplete">Selesai dibaca</label>
+                                </div>
+                                <div class="mt-3 d-grid">
+                                    <button 
+                                        class="btn btn-primary" 
+                                        type="submit"
+                                        data-testid="bookFormSubmitButton"
+                                    >
+                                        Masukkan Buku <i class="bi bi-chevron-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+
+                    <!-- Form Pencarian dan Daftar Buku -->
+                    <div class="col-md-6 col-12 col-lg-7">
+                        <section>
+                            <h4><i class="bi bi-search"></i> Cari Buku</h4>
+                            <form id="searchBook" data-testid="searchBookForm">
+                                <div class="input-group">
+                                    <input 
+                                        class="form-control" 
+                                        id="searchBookTitle" 
+                                        type="text" 
+                                        placeholder="Cari berdasarkan judul"
+                                        data-testid="searchBookFormTitleInput"
+                                    >
+                                    <button 
+                                        class="btn btn-primary" 
+                                        type="submit"
+                                        data-testid="searchBookFormSubmitButton"
+                                    >
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
+
+                        <!-- Rak Belum Selesai Dibaca -->
+                        <section class="mt-5">
+                            <h4><i class="bi bi-book-half"></i> Belum selesai dibaca</h4>
+                            <div 
+                                id="incompleteBookshelfList" 
+                                class="book-container"
+                                data-testid="incompleteBookList"
+                            ></div>
+                        </section>
+
+                        <!-- Rak Selesai Dibaca -->
+                        <section class="mt-5">
+                            <h4><i class="bi bi-check-all"></i> Selesai dibaca</h4>
+                            <div 
+                                id="completeBookshelfList" 
+                                class="book-container"
+                                data-testid="completeBookList"
+                            ></div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dom.js"></script>
+</body>
+
+</html>
